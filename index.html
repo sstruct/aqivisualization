@@ -6,25 +6,29 @@
   <link rel="stylesheet" href="./styles/main.css">
 </head>
 <body>
+  <div class="overlay"></div>
   <header>
     <section id="title">
-      <h2>AQI Visualization</h2>
+        <a href="#"><h3>AQIVisualization</h3></a>
     </section>
+
     <nav class="menu">
       <ul>
-        <li><a href="#">Privacy Policy</a></li>
-        <li><a href="#">Contact yangtze</a></li>
+        <li><a href="#">HOME</a></li>
+        <li><a href="#">CITY</a></li>
+        <li><a href="#">ABOUT</a></li>
       </ul>
     </nav>
+
     <form action="#" class="search" method="post">
       <label for="search">Search</label>
-      <input type="text" name="which_city" value="" placeholder="Which City?">
+      <input type="text" name="which_city" placeholder="Which city?">
     </form>
   </header>
 
   <section id="main">
     <div id="map">
-      <script>
+      <!-- <script>
             function initMap() {
               var mapDiv = document.getElementById('map');
               var map = new google.maps.Map(mapDiv, {
@@ -33,16 +37,13 @@
               });
             }
       </script>
-      <!-- http://maps.google.cn/maps/api/js?sensor=false -->
       <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
               async defer>
-      </script>
+      </script> -->
+      <!-- http://maps.google.cn/maps/api/js?sensor=false -->
     </div>
-    <div id="airquality"></div>
-    <div id="d3"></div>
   </section>
 
-  <aside>aside</aside>
   <!-- <script src="index.js" charset="utf-8"></script> -->
 </body>
 </html>

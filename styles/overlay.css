@@ -1,0 +1,10 @@
+/*这条加不加都行啊*/
+
+.overlay {
+  /*z-index: 8;*/
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  background: linear-gradient(rgba(0, 0, 0, 0.3) 0%, transparent 30%, transparent 70%, rgba(0, 0, 0, 0.3) 100%);
+  min-height: 460px;
+}
