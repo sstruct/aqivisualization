@@ -1,0 +1,83 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+div, a{
+  display: block;
+  text-decoration: none;
+}
+
+body {
+  position: relative;
+}
+
+/*header样式*/
+header {
+  position: fixed;
+  width: 100%;
+  z-index: 20;
+  /*box-shadow: 0 2px 6px -4px;*/
+}
+
+
+header section#title {
+  position: absolute;
+  width: 300px;
+  height: 70px;
+  left: 10px;
+  top: 0;
+}
+
+/*搜索框样式*/
+form.search {
+  position: absolute;
+  width: 150px;
+  top: 4px;
+  right: 3vw;
+}
+
+.search input {
+  float: right;
+  width: 90px;
+  border-radius: 5px 0;
+  color: #888;
+  outline: none;
+  transition: 0.2s  width;
+}
+
+.search input:hover { width: 140px;}
+.search label {display: none;}
+form.search input { background-color: #fff; }
+
+/*main 主体部分*/
+section#main {
+  overflow: hidden;
+  padding: 0 0 10px;
+}
+
+section #map {
+  position: relative;
+  top: 5vh;
+  width: 100%;
+  background-color: #ccc;
+  height: 95vh;
+}
+
+/*footer 样式*/
+
+header ul {
+  display: inline-block;
+  margin: 5px 40vw 0;
+}
+
+header li {
+  margin-left: 10px;
+  list-style-type: none;
+  float: left;
+  text-decoration: none;
+}
+
+header li + li a {
+  border-left: 1px solid #ccc;
+}

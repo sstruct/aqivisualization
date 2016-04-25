@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AirQuality</title>
+  <link rel="stylesheet" href="./styles/main.css">
+</head>
+<body>
+  <header>
+    <section id="title">
+      <h2>AQI Visualization</h2>
+    </section>
+    <nav class="menu">
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Contact yangtze</a></li>
+      </ul>
+    </nav>
+    <form action="#" class="search" method="post">
+      <label for="search">Search</label>
+      <input type="text" name="which_city" value="" placeholder="Which City?">
+    </form>
+  </header>
+
+  <section id="main">
+    <div id="map">
+      <script>
+            function initMap() {
+              var mapDiv = document.getElementById('map');
+              var map = new google.maps.Map(mapDiv, {
+                center: {lat: 35, lng: 105},
+                zoom: 4
+              });
+            }
+      </script>
+      <!-- http://maps.google.cn/maps/api/js?sensor=false -->
+      <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+              async defer>
+      </script>
+    </div>
+    <div id="airquality"></div>
+    <div id="d3"></div>
+  </section>
+
+  <aside>aside</aside>
+  <!-- <script src="index.js" charset="utf-8"></script> -->
+</body>
+</html>
