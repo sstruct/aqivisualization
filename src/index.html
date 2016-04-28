@@ -1,11 +1,8 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>React Webpack Template Title</title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta charset="UTF-8">
+  <title>earthquake</title>
 </head>
 <body>
   <header>
@@ -28,39 +25,46 @@
   </header>
 
   <section id="main">
-    <div id="map">
-      <script>
-            function initMap() {
-              var mapDiv = document.getElementById('map');
-              var map = new google.maps.Map(mapDiv, {
-                center: {lat: 35, lng: 105},
-                zoom: 4,
-                // disableDefaultUI: true
-                zoomControl: true,
-                mapTypeControl: true,
-                mapTypeControlOptions: {
-                  position: google.maps.ControlPosition.LEFT_BOTTOM
-                },
-                scaleControl: true,
-                streetViewControl: false,
-                rotateControl: false
-              });
-            }
-      </script>
-      <script src="https://maps.googleapis.com/maps/api/js?region=cn&language=zh-CN&key=AIzaSyACeZsYd8xiS1jF_VviZZGmNjY0gQX-Co4&callback=initMap"
-              async defer>
-      </script>
-
-      <!-- <script src="http://maps.google.cn/maps/api/js?key=AIzaSyACeZsYd8xiS1jF_VviZZGmNjY0gQX-Co4&callback=initMap"
-              async defer>
-      </script> -->
-
-    </div>
+    <div id='map'></div>
   </section>
 
-  <div id="app">APPLICATION CONTENT</div>
+  <script>
+  // importing google maps
+  var map;
+  function initialize() {
+    var mapOptions = {
+    zoom: 4,
+    center: {lat: 35.22, lng: 110.48},
+    mapTypeId: google.maps.MapTypeId.TERRAIN,
+    mapTypeControl: true,
+    mapTypeControlOptions: {
+      style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+      position: google.maps.ControlPosition.LEFT_BOTTOM
+    },
+  };
 
-  <script>__REACT_DEVTOOLS_GLOBAL_HOOK__ = parent.__REACT_DEVTOOLS_GLOBAL_HOOK__</script>
-  <script type="text/javascript" src="./assets/app.js"></script>
+  map = new google.maps.Map(document.getElementById('map'),
+       mapOptions);
+  }
+
+  function eqfeed_callback(results) {
+      map.data.addGeoJson(results);
+  }
+
+  </script>
+
+  <div id="app"></div>
+
+  <!-- google maps US -->
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?region=cn&language=zh-CN&key=AIzaSyACeZsYd8xiS1jF_VviZZGmNjY0gQX-Co4&callback=initialize"
+          async defer>
+  </script> -->
+
+  <!-- google maps CN -->
+  <script src="http://maps.google.cn/maps/api/js?region=cn&language=zh-CN&key=AIzaSyACeZsYd8xiS1jF_VviZZGmNjY0gQX-Co4&callback=initialize"
+  async defer>
+  </script>
+    <script>__REACT_DEVTOOLS_GLOBAL_HOOK__ = parent.__REACT_DEVTOOLS_GLOBAL_HOOK__</script>
+    <script type="text/javascript" src="./assets/app.js"></script>
 </body>
 </html>
