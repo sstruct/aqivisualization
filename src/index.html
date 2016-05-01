@@ -5,66 +5,12 @@
   <title>earthquake</title>
 </head>
 <body>
-  <header>
-    <section id="title">
-        <a href="#"><h3>AQIVisualization</h3></a>
-    </section>
-
-    <nav class="menu">
-      <ul>
-        <li><a href="#">HOME</a></li>
-        <li><a href="#">CITY</a></li>
-        <li><a href="#">ABOUT</a></li>
-      </ul>
-    </nav>
-
-    <form action="#" class="search" method="post">
-      <label for="search">Search</label>
-      <input type="text" name="which_city" placeholder="Which city?">
-    </form>
-  </header>
-
-  <section id="main">
-    <div id='map'></div>
-  </section>
-
-  <script>
-  // importing google maps
-  var map;
-  function initialize() {
-    var mapOptions = {
-    zoom: 4,
-    center: {lat: 35.22, lng: 110.48},
-    mapTypeId: google.maps.MapTypeId.TERRAIN,
-    mapTypeControl: true,
-    mapTypeControlOptions: {
-      style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
-      position: google.maps.ControlPosition.LEFT_BOTTOM
-    },
-  };
-
-  map = new google.maps.Map(document.getElementById('map'),
-       mapOptions);
-  }
-
-  function eqfeed_callback(results) {
-      map.data.addGeoJson(results);
-  }
-
-  </script>
-
   <div id="app"></div>
-
-  <!-- google maps US -->
-  <!-- <script src="https://maps.googleapis.com/maps/api/js?region=cn&language=zh-CN&key=AIzaSyACeZsYd8xiS1jF_VviZZGmNjY0gQX-Co4&callback=initialize"
-          async defer>
-  </script> -->
-
   <!-- google maps CN -->
-  <script src="http://maps.google.cn/maps/api/js?region=cn&language=zh-CN&key=AIzaSyACeZsYd8xiS1jF_VviZZGmNjY0gQX-Co4&callback=initialize"
+  <!-- <script src="http://maps.google.cn/maps/api/js?region=cn&language=zh-CN&key=AIzaSyACeZsYd8xiS1jF_VviZZGmNjY0gQX-Co4&callback=initialize"
   async defer>
-  </script>
-    <script>__REACT_DEVTOOLS_GLOBAL_HOOK__ = parent.__REACT_DEVTOOLS_GLOBAL_HOOK__</script>
-    <script type="text/javascript" src="./assets/app.js"></script>
+  -->
+  <script>__REACT_DEVTOOLS_GLOBAL_HOOK__ = parent.__REACT_DEVTOOLS_GLOBAL_HOOK__</script>
+  <script type="text/javascript" src="./assets/app.js"></script>
 </body>
 </html>
