@@ -1,21 +1,11 @@
-require('normalize.css/normalize.css');
-require('styles/App.scss');
-// require('./InitMaps.js')
+// file: main.jsx
+import React from 'react';
+import { render } from 'react-dom';
+import Layout from './Layout.js';
 
-import React from 'react'
-import ReactDOM from 'react-dom'
-import Header from './Header'
-import Map from './Maps'
+import 'normalize.css/normalize.css';
+import './Main.sass';
 
-class Main extends React.Component {
-  render () {
-    return (
-      <div>
-        <Header />
-        <Map />
-      </div>
-    )
-  }
-}
+const mountNode = document.getElementById('app');
 
-ReactDOM.render(<Main />, document.getElementById('app'))
+render(<Layout />, mountNode);
