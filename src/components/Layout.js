@@ -42,7 +42,7 @@ export class Layout extends Component {
 
 export const layoutHOC = compose(
   defaultProps({
-    styles: layoutStyles,
+    styles: layoutStyles
   })
 );
 
