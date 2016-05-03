@@ -11,13 +11,30 @@ function getDefaultModules() {
       }],
     loaders: [
       {
-        test: /\.css$/,
-        loader: 'style-loader!css-loader!postcss-loader'
+        test: /\.sass$/,
+        loaders: [
+          'style-loader',
+          'css-loader?modules&importLoaders=2&localIdentName=[name]__[local]',
+          'postcss-loader',
+          'sass-loader?precision=10&indentedSyntax=sass'
+        ]
       },
       {
-        test: /\.sass/,
-        loader: 'style-loader!css-loader!postcss-loader!sass-loader?outputStyle=expanded&indentedSyntax'
+        test: /\.css$/,
+        loaders: [
+          'style-loader',
+          'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]',
+          'postcss-loader'
+        ]
       },
+      // {
+      //   test: /\.css$/,
+      //   loader: 'style-loader!css-loader!postcss-loader'
+      // },
+      // {
+      //   test: /\.sass/,
+      //   loader: 'style-loader!css-loader?modules&importLoaders=2&localIdentName=[name]__[local]!postcss-loader!sass-loader?precision=10&indentedSyntax=sass?outputStyle=expanded&indentedSyntax'
+      // },
       {
         test: /\.scss/,
         loader: 'style-loader!css-loader!postcss-loader!sass-loader?outputStyle=expanded'
@@ -31,7 +48,7 @@ function getDefaultModules() {
         loader: 'style-loader!css-loader!postcss-loader!stylus-loader'
       },
       {
-        test: /\.(png|jpg|gif|woff|woff2)$/,
+        test: /\.(png|jpg|gif|svg|woff|woff2)$/,
         loader: 'url-loader?limit=8192'
       },
       {
