@@ -14,7 +14,7 @@ export const gMap = ({
   style, hoverDistance, options,
   mapProps: { center, zoom },
   onChange, onChildMouseEnter, onChildMouseLeave,
-  clusters
+  clusters,
 }) => (
   <GoogleMapReact
     style={style}
@@ -43,14 +43,14 @@ export const gMapHOC = compose(
     hoverDistance: 30,
     options: {
       minZoom: 3,
-      maxZoom: 15
+      maxZoom: 15,
     },
     style: {
       position: 'relative',
       margin: 0,
       padding: 0,
-      flex: 1
-    }
+      flex: 1,
+    },
   }),
   // withState so you could change markers if you want
   withState(
@@ -68,7 +68,7 @@ export const gMapHOC = compose(
     'setMapProps',
     {
       center: susolvkaCoords,
-      zoom: 4
+      zoom: 10,
     }
   ),
   // describe events
@@ -87,7 +87,7 @@ export const gMapHOC = compose(
       onChildMouseLeave(/* hoverKey, childProps */) {
         const { setHoveredMarkerId } = getProps();
         setHoveredMarkerId(-1);
-      }
+      },
     })
   ),
   // precalculate clusters if markers data has changed
@@ -100,9 +100,9 @@ export const gMapHOC = compose(
         {
           minZoom, // min zoom to generate clusters on
           maxZoom, // max zoom level to cluster the points on
-          radius: clusterRadius // cluster radius in pixels
+          radius: clusterRadius, // cluster radius in pixels
         }
-      )
+      ),
     })
   ),
   // get clusters specific for current bounds and zoom
@@ -117,9 +117,9 @@ export const gMapHOC = compose(
             lng: wx,
             text: numPoints,
             numPoints,
-            id: `${numPoints}_${points[0].id}`
+            id: `${numPoints}_${points[0].id}`,
           }))
-        : []
+        : [],
     })
   ),
   // set hovered
@@ -130,8 +130,8 @@ export const gMapHOC = compose(
       clusters: clusters
         .map(({ ...cluster, id }) => ({
           ...cluster,
-          hovered: id === hoveredMarkerId
-        }))
+          hovered: id === hoveredMarkerId,
+        })),
     })
   ),
 );

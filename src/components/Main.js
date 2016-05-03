@@ -1,38 +1,11 @@
+// file: main.jsx
+import React from 'react';
+import { render } from 'react-dom';
+import Layout from './Layout.js';
+
 import 'normalize.css/normalize.css';
-import './Main.scss';
+import './Main.sass';
 
-import React from 'react'
-import ReactDOM from 'react-dom'
-import GoogleMapReact from 'google-map-react'
+const mountNode = document.getElementById('app');
 
-class SimpleMap extends React.Component {
-  state = {
-    center: [35.22, 110.48],
-    zoom: 4
-  };
-
-  _onChange = ({center, zoom}) => {
-    this.setState({
-      center: center,
-      zoom: zoom
-    });
-  }
-
-  render() {
-    return (
-       <GoogleMapReact
-        onChange={this._onChange}
-        center={this.state.center}
-        zoom={this.state.zoom}>
-        <div className="place" lat={35.22} lng={110.48}>CENTER</div>
-      </GoogleMapReact>
-    );
-  }
-}
-
-ReactDOM.render(
-  <div style={{width: '100%', height: '100vh'}}>
-    <SimpleMap/>
-  </div>,
-  document.getElementById('app')
-);
+render(<Layout />, mountNode);
