@@ -1,9 +1,13 @@
 'use strict';
 const path = require('path');
+const autoprefixer = require('autoprefixer');
 const srcPath = path.join(__dirname, '/../src');
 const dfltPort = 8000;
 function getDefaultModules() {
   return {
+    postcss: [
+    autoprefixer({ browsers: ['last 2 versions'] })
+    ],
     preLoaders: [{
         test: /\.(js|jsx)$/,
         include: srcPath,
