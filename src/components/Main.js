@@ -1,9 +1,10 @@
 import 'normalize.css/normalize.css';
-import './Main.sass';
+import './Main.scss';
 
 import React from 'react'
 import ReactDOM from 'react-dom'
 import GoogleMapReact from 'google-map-react'
+
 class SimpleMap extends React.Component {
   state = {
     center: [35.22, 110.48],
@@ -23,14 +24,14 @@ class SimpleMap extends React.Component {
         onChange={this._onChange}
         center={this.state.center}
         zoom={this.state.zoom}>
-        <div className="map" lat={35.22} lng={110.48}>CENTER</div>
+        <div className="place" lat={35.22} lng={110.48}>CENTER</div>
       </GoogleMapReact>
     );
   }
 }
 
 ReactDOM.render(
-  <div style={{width: '100%', height: '100vh', color: 'green'}}>
+  <div style={{width: '100%', height: '100vh'}}>
     <SimpleMap/>
   </div>,
   document.getElementById('app')
