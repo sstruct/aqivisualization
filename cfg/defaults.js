@@ -5,9 +5,6 @@ const srcPath = path.join(__dirname, '/../src');
 const dfltPort = 8000;
 function getDefaultModules() {
   return {
-    postcss: [
-    autoprefixer({ browsers: ['last 2 versions'] })
-    ],
     preLoaders: [{
         test: /\.(js|jsx)$/,
         include: srcPath,
@@ -67,7 +64,7 @@ module.exports = {
   publicPath: '/assets/',
   port: dfltPort,
   getDefaultModules: getDefaultModules,
-  postcss: function () {
-    return [];
-  }
+  postcss: [
+  autoprefixer({ browsers: ['last 2 versions'] })
+  ]
 };
