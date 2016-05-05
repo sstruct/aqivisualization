@@ -2,7 +2,6 @@
  * GoogleMap hover example
  */
 import React, {PropTypes, Component} from 'react';
-import { render } from 'react-dom'
 import shouldPureComponentUpdate from 'react-pure-render/function';
 
 import GoogleMap from 'google-map-react';
@@ -10,7 +9,7 @@ import MyGreatPlaceWithHover from './my_great_place_with_hover.jsx';
 
 import {K_SIZE} from './my_great_place_with_hover_styles.js';
 
-export default class SimpleHoverMapPage extends Component {
+export default class Main extends Component {
   static propTypes = {
     center: PropTypes.array,
     zoom: PropTypes.number,
@@ -46,10 +45,3 @@ export default class SimpleHoverMapPage extends Component {
     );
   }
 }
-
-render(
-  <div style={{width:'100%', height:'100vh'}}>
-    <SimpleHoverMapPage />
-  </div>,
-  document.getElementById('app')
-)
