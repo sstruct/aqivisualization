@@ -1,15 +1,16 @@
 /*
- * Base Google Map example
+ * GoogleMap hover example
  */
 import React, {PropTypes, Component} from 'react';
 import { render } from 'react-dom'
 import shouldPureComponentUpdate from 'react-pure-render/function';
 
-
 import GoogleMap from 'google-map-react';
-import MyGreatPlace from './my_great_place.jsx';
+import MyGreatPlaceWithHover from './my_great_place_with_hover.jsx';
 
-export default class SimpleMapPage extends Component {
+import {K_SIZE} from './my_great_place_with_hover_styles.js';
+
+export default class SimpleHoverMapPage extends Component {
   static propTypes = {
     center: PropTypes.array,
     zoom: PropTypes.number,
@@ -33,16 +34,22 @@ export default class SimpleMapPage extends Component {
        <GoogleMap
         // apiKey={YOUR_GOOGLE_MAP_API_KEY} // set if you need stats etc ...
         center={this.props.center}
-        zoom={this.props.zoom}>
-        <MyGreatPlace lat={59.955413} lng={30.337844} text={'A'} /* Kreyser Avrora */ />
-        <MyGreatPlace {...this.props.greatPlaceCoords} text={'B'} /* road circle */ />
+        zoom={this.props.zoom}
+        // instead of css hover (which sometimes is bad for map markers) (bad means inability to hover on markers placed under other markers)
+        // you can use internal GoogleMap component hover algorithm
+        // hover algorithm explained at x_distance_hover example
+        hoverDistance={K_SIZE / 2}
+        >
+        <MyGreatPlaceWithHover lat={59.955413} lng={30.337844} text={'A'} /* Kreyser Avrora */ />
+        <MyGreatPlaceWithHover {...this.props.greatPlaceCoords} text={'B'} /* road circle */ />
       </GoogleMap>
     );
   }
 }
 
 render(
-  <div style={{width: '100%', height: '100vh'}}>
-    <SimpleMapPage />
+  <div style={{width:'100%', height:'100vh'}}>
+    <SimpleHoverMapPage />
   </div>,
-  document.getElementById('app'))
+  document.getElementById('app')
+)
