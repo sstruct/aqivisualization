@@ -3,13 +3,9 @@
     "es2015",
     "stage-0",
     "react",
+    "react-hmre"
   ],
   "plugins": [
     ["transform-decorators-legacy"]
   ],
-  "env": {
-    "development": {
-      "presets": ["react-hmre"]
-    }
-  }
 }
