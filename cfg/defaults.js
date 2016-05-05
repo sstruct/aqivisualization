@@ -10,9 +10,21 @@ function getDefaultModules() {
         include: srcPath,
         loader: 'eslint-loader'
       }],
+    postcss: [
+      autoprefixer({ browsers: ['last 2 versions'] })
+    ],
     loaders: [
       {
         test: /\.sass$/,
+        loaders: [
+          'style-loader',
+          'css-loader?modules&importLoaders=2&localIdentName=[name]__[local]',
+          'postcss-loader',
+          'sass-loader?precision=10&indentedSyntax=sass'
+        ]
+      },
+      {
+        test: /\.scss$/,
         loaders: [
           'style-loader',
           'css-loader?modules&importLoaders=2&localIdentName=[name]__[local]',
@@ -29,17 +41,17 @@ function getDefaultModules() {
         ]
       },
       // {
-      //   test: /\.css$/,
+      //   test: /\.css/,
       //   loader: 'style-loader!css-loader!postcss-loader'
       // },
       // {
       //   test: /\.sass/,
       //   loader: 'style-loader!css-loader?modules&importLoaders=2&localIdentName=[name]__[local]!postcss-loader!sass-loader?precision=10&indentedSyntax=sass?outputStyle=expanded&indentedSyntax'
       // },
-      {
-        test: /\.scss/,
-        loader: 'style-loader!css-loader!postcss-loader!sass-loader?outputStyle=expanded'
-      },
+      // {
+      //   test: /\.scss/,
+      //   loader: 'style-loader!css-loader!postcss-loader!sass-loader?outputStyle=expanded'
+      // },
       {
         test: /\.less/,
         loader: 'style-loader!css-loader!postcss-loader!less-loader'
@@ -63,8 +75,5 @@ module.exports = {
   srcPath: srcPath,
   publicPath: '/assets/',
   port: dfltPort,
-  getDefaultModules: getDefaultModules,
-  postcss: [
-  autoprefixer({ browsers: ['last 2 versions'] })
-  ]
+  getDefaultModules: getDefaultModules
 };
