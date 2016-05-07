@@ -9,15 +9,20 @@ import ClusterMarker from './markers/ClusterMarker';
 // import SimpleMarker from './markers/SimpleMarker';
 import supercluster from 'points-cluster';
 import { zhongyuanCoords, markersData } from './data/fakeData';
-// import Geojson from './data/Geojson.json'
+import Geojson from './data/Geojson.json'
 
 export const gMap = ({
-  style, hoverDistance, options,
+  style, hoverDistance, options, Geojson,
   mapProps: { center, zoom },
   onChange, onChildMouseEnter, onChildMouseLeave,
   clusters,
 }) => (
   <GoogleMapReact
+    bootstrapURLKeys={{
+    key: 'AIzaSyACeZsYd8xiS1jF_VviZZGmNjY0gQX-Co4',
+    language: 'zh-cn',
+    }}
+
     style={style}
     options={options}
     hoverDistance={hoverDistance}
@@ -26,6 +31,8 @@ export const gMap = ({
     onChange={onChange}
     onChildMouseEnter={onChildMouseEnter}
     onChildMouseLeave={onChildMouseLeave}
+    onGoogleApiLoaded={({Geojson}) => console.log(Geojson)}
+    yesIWantToUseGoogleMapApiInternals
   >
     {
         clusters
@@ -33,6 +40,7 @@ export const gMap = ({
               <ClusterMarker key={id} {...markerProps} />
           ))
     }
+
   </GoogleMapReact>
 );
 
@@ -70,6 +78,7 @@ export const gMapHOC = compose(
       zoom: 4,
     }
   ),
+
   // describe events
   withAttachedProps(
     (getProps) => ({
@@ -86,7 +95,7 @@ export const gMapHOC = compose(
       onChildMouseLeave(/* hoverKey, childProps */) {
         const { setHoveredMarkerId } = getProps();
         setHoveredMarkerId(-1);
-      },
+      }
     })
   ),
   // precalculate clusters if markers data has changed
