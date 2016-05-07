@@ -6,21 +6,17 @@ import withAttachedProps from 'recompose/withAttachedProps';
 import mapPropsOnChange from 'recompose/mapPropsOnChange';
 import GoogleMapReact from 'google-map-react';
 import ClusterMarker from './markers/ClusterMarker';
-import SimpleMarker from './markers/SimpleMarker';
+// import SimpleMarker from './markers/SimpleMarker';
 import supercluster from 'points-cluster';
-import { zhongyuanCoords, markersData } from './data/fakeData';
+import { susolvkaCoords, markersData } from './data/fakeData';
 
 export const gMap = ({
   style, hoverDistance, options,
   mapProps: { center, zoom },
   onChange, onChildMouseEnter, onChildMouseLeave,
-  clusters
+  clusters,
 }) => (
   <GoogleMapReact
-    bootstrapURLKeys={{
-    key: 'AIzaSyACeZsYd8xiS1jF_VviZZGmNjY0gQX-Co4',
-    language: 'zh-cn'
-    }}
     style={style}
     options={options}
     hoverDistance={hoverDistance}
@@ -31,12 +27,10 @@ export const gMap = ({
     onChildMouseLeave={onChildMouseLeave}
   >
     {
-      clusters
-        .map(({ ...markerProps, id, numPoints }) => (
-          numPoints === 1
-            ? <SimpleMarker key={id} {...markerProps} />
-            : <ClusterMarker key={id} {...markerProps} />
-        ))
+        clusters
+          .map(({ ...markerProps, id, numPoints }) => (
+              <ClusterMarker key={id} {...markerProps} />
+          ))
     }
   </GoogleMapReact>
 );
@@ -46,15 +40,15 @@ export const gMapHOC = compose(
     clusterRadius: 60,
     hoverDistance: 30,
     options: {
-      minZoom: 1,
-      maxZoom: 15
+      minZoom: 3,
+      maxZoom: 15,
     },
     style: {
       position: 'relative',
       margin: 0,
       padding: 0,
-      flex: 1
-    }
+      flex: 1,
+    },
   }),
   // withState so you could change markers if you want
   withState(
@@ -71,8 +65,8 @@ export const gMapHOC = compose(
     'mapProps',
     'setMapProps',
     {
-      center: zhongyuanCoords,
-      zoom: 4
+      center: susolvkaCoords,
+      zoom: 10,
     }
   ),
   // describe events
@@ -91,7 +85,7 @@ export const gMapHOC = compose(
       onChildMouseLeave(/* hoverKey, childProps */) {
         const { setHoveredMarkerId } = getProps();
         setHoveredMarkerId(-1);
-      }
+      },
     })
   ),
   // precalculate clusters if markers data has changed
@@ -104,9 +98,9 @@ export const gMapHOC = compose(
         {
           minZoom, // min zoom to generate clusters on
           maxZoom, // max zoom level to cluster the points on
-          radius: clusterRadius // cluster radius in pixels
+          radius: clusterRadius, // cluster radius in pixels
         }
-      )
+      ),
     })
   ),
   // get clusters specific for current bounds and zoom
@@ -121,9 +115,9 @@ export const gMapHOC = compose(
             lng: wx,
             text: numPoints,
             numPoints,
-            id: `${numPoints}_${points[0].id}`
+            id: `${numPoints}_${points[0].id}`,
           }))
-        : []
+        : [],
     })
   ),
   // set hovered
@@ -134,8 +128,8 @@ export const gMapHOC = compose(
       clusters: clusters
         .map(({ ...cluster, id }) => ({
           ...cluster,
-          hovered: id === hoveredMarkerId
-        }))
+          hovered: id === hoveredMarkerId,
+        })),
     })
   ),
 );

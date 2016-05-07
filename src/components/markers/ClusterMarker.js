@@ -8,7 +8,7 @@ import clusterMarkerStyles from './ClusterMarker.sass';
 
 export const clusterMarker = ({
   styles, text,
-  defaultMotionStyle, motionStyle
+  defaultMotionStyle, motionStyle,
 }) => (
   <Motion
     defaultStyle={defaultMotionStyle}
@@ -19,7 +19,7 @@ export const clusterMarker = ({
       <div
         className={styles.marker}
         style={{
-          transform: `translate3D(0,0,0) scale(${scale}, ${scale})`
+          transform: `translate3D(0,0,0) scale(${scale}, ${scale})`,
         }}
       >
         <div
@@ -43,7 +43,7 @@ export const clusterMarkerHOC = compose(
     hovered: false,
     stiffness: 320,
     damping: 7,
-    precision: 0.001
+    precision: 0.001,
   }),
   // pure optimization can cause some effects you don't want,
   // don't use it in development for markers
@@ -52,22 +52,22 @@ export const clusterMarkerHOC = compose(
     ['initialScale'],
     ({ initialScale, defaultScale, $prerender }) => ({
       initialScale,
-      defaultMotionStyle: { scale: $prerender ? defaultScale : initialScale }
+      defaultMotionStyle: { scale: $prerender ? defaultScale : initialScale },
     })
   ),
   mapPropsOnChange(
     ['hovered'],
     ({
       hovered, hoveredScale, defaultScale,
-      stiffness, damping, precision
+      stiffness, damping, precision,
     }) => ({
       hovered,
       motionStyle: {
         scale: spring(
           hovered ? hoveredScale : defaultScale,
           { stiffness, damping, precision }
-        )
-      }
+        ),
+      },
     })
   )
 );
