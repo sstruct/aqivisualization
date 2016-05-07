@@ -8,7 +8,8 @@ import GoogleMapReact from 'google-map-react';
 import ClusterMarker from './markers/ClusterMarker';
 // import SimpleMarker from './markers/SimpleMarker';
 import supercluster from 'points-cluster';
-import { susolvkaCoords, markersData } from './data/fakeData';
+import { zhongyuanCoords, markersData } from './data/fakeData';
+// import Geojson from './data/Geojson.json'
 
 export const gMap = ({
   style, hoverDistance, options,
@@ -65,8 +66,8 @@ export const gMapHOC = compose(
     'mapProps',
     'setMapProps',
     {
-      center: susolvkaCoords,
-      zoom: 10,
+      center: zhongyuanCoords,
+      zoom: 4,
     }
   ),
   // describe events
