@@ -14,44 +14,44 @@ function getDefaultModules() {
       autoprefixer({ browsers: ['last 2 versions'] })
     ],
     loaders: [
-      {
-        test: /\.sass$/,
-        loaders: [
-          'style-loader',
-          'css-loader?modules&importLoaders=2&localIdentName=[name]__[local]',
-          'postcss-loader',
-          'sass-loader?precision=10&indentedSyntax=sass'
-        ]
-      },
-      {
-        test: /\.scss$/,
-        loaders: [
-          'style-loader',
-          'css-loader?modules&importLoaders=2&localIdentName=[name]__[local]',
-          'postcss-loader',
-          'sass-loader?precision=10&indentedSyntax=sass'
-        ]
-      },
-      {
-        test: /\.css$/,
-        loaders: [
-          'style-loader',
-          'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]',
-          'postcss-loader'
-        ]
-      },
       // {
-      //   test: /\.css/,
-      //   loader: 'style-loader!css-loader!postcss-loader'
+      //   test: /\.sass$/,
+      //   loaders: [
+      //     'style-loader',
+      //     'css-loader?modules&importLoaders=2&localIdentName=[name]__[local]',
+      //     'postcss-loader',
+      //     'sass-loader?precision=10&indentedSyntax=sass'
+      //   ]
       // },
       // {
-      //   test: /\.sass/,
-      //   loader: 'style-loader!css-loader?modules&importLoaders=2&localIdentName=[name]__[local]!postcss-loader!sass-loader?precision=10&indentedSyntax=sass?outputStyle=expanded&indentedSyntax'
+      //   test: /\.scss$/,
+      //   loaders: [
+      //     'style-loader',
+      //     'css-loader?modules&importLoaders=2&localIdentName=[name]__[local]',
+      //     'postcss-loader',
+      //     'sass-loader?precision=10&indentedSyntax=sass'
+      //   ]
       // },
       // {
-      //   test: /\.scss/,
-      //   loader: 'style-loader!css-loader!postcss-loader!sass-loader?outputStyle=expanded'
+      //   test: /\.css$/,
+      //   loaders: [
+      //     'style-loader',
+      //     'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]',
+      //     'postcss-loader'
+      //   ]
       // },
+      {
+        test: /\.css/,
+        loader: 'style-loader!css-loader!postcss-loader'
+      },
+      {
+        test: /\.sass/,
+        loader: 'style-loader!css-loader?modules&importLoaders=2&localIdentName=[name]__[local]!postcss-loader!sass-loader?precision=10&indentedSyntax=sass?outputStyle=expanded&indentedSyntax'
+      },
+      {
+        test: /\.scss/,
+        loader: 'style-loader!css-loader!postcss-loader!sass-loader?outputStyle=expanded'
+      },
       {
         test: /\.less/,
         loader: 'style-loader!css-loader!postcss-loader!less-loader'
@@ -63,6 +63,10 @@ function getDefaultModules() {
       {
         test: /\.(png|jpg|gif|svg|woff|woff2)$/,
         loader: 'url-loader?limit=8192'
+      },
+      {
+        test: /\.json/,
+        loader: 'json-loader'
       },
       {
         test: /\.(mp4|ogg|svg)$/,
