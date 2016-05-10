@@ -18,7 +18,10 @@ export const gMap = ({
   clusters,
 }) => (
   <GoogleMapReact
-    apiKey={'AIzaSyACeZsYd8xiS1jF_VviZZGmNjY0gQX-Co4'}
+    bootstrapURLKeys={{
+     key: 'AIzaSyACeZsYd8xiS1jF_VviZZGmNjY0gQX-Co4',
+     language: 'zh-cn'
+    }}
     style={style}
     options={options}
     hoverDistance={hoverDistance}

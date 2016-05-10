@@ -1,29 +1,47 @@
-import AQI from './2016-05-10T09:00:00Z.json'
-import Geojson from './Geojson.json'
+// import data
+import Data from '../../API/2016-05-10T13:00:00Z.json'
 
-let geojson = JSON.parse(Geojson)
+/*
+ *calculate avarage AQI
+ *@para data:array
+ */
+export const calculateAverageAQI = (data) => {
+  let length = data.length
+  let i=0, sum = 0, avg = 0
+  for(i; i<length; i++){
+    sum += parseInt(data[i].aqi, 10)
+  }
+  return avg = sum / length
+}
 
-const TOTAL_COUNT = AQI[0].aqi;
+/*
+ *get one area's data
+ *@para area:string
+ *@para data:array
+ */
+export const getAreaData = (area, data) => {
+  let length = data.length
+  let areaData = []
+  let i = 0
+  for(; i<length; i++) {
+    if(data[i].area == area){
+      areaData.push(data[i])
+    }
+  }
+  return areaData
+}
 
-export const zhongyuanCoords = { lat: 36.2304, lng: 111.4737 };
-
-export const markersData = [...Array(TOTAL_COUNT)].fill(0) // fill(0) for loose mode
-  .map((__, index) => ({
-    id: index,
-    lat: zhongyuanCoords.lat +
-      0.01 * index *
-      Math.sin(30 * Math.PI * index / 180) *
-      Math.cos(50 * Math.PI * index / 180) + Math.sin(5 * index / 180),
-    lng: zhongyuanCoords.lng +
-      0.01 * index *
-      Math.cos(70 + 23 * Math.PI * index / 180) *
-      Math.cos(50 * Math.PI * index / 180) + Math.sin(5 * index / 180),
-    aqi: 100,
-  }));
-
-export const sitesPositonData = [...Array(geojson.length)].fill(0)
-  .map((__, index) => ({
-    id: index,
-    lat: zhongyuanCoords.lat,
-    lng: zhongyuanCoords.lng
-  }))
+/*
+ *convert address to coords
+ *@para area:string
+ *@para Data:array
+ */
+export const getCoords = (area, Data) => {
+  let areaData = getAreaData(area, Data)
+  for(let i=0; i<areaData.length; i++) {
+    let address = areaData[i].area + areaData[i].position_name
+    areaData[i].address = address
+  }
+  console.log(areaData[i].address)
+  return areaData
+}
