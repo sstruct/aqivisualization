@@ -5,9 +5,9 @@ import withState from 'recompose/withState';
 import withAttachedProps from 'recompose/withAttachedProps';
 import mapPropsOnChange from 'recompose/mapPropsOnChange';
 import GoogleMapReact from 'google-map-react';
+import supercluster from 'points-cluster';
 import ClusterMarker from './markers/ClusterMarker';
 // import SimpleMarker from './markers/SimpleMarker';
-import supercluster from 'points-cluster';
 import { zhongyuanCoords, markersData } from './data/fakeData';
 import Geojson from './data/Geojson.json'
 
@@ -18,11 +18,7 @@ export const gMap = ({
   clusters,
 }) => (
   <GoogleMapReact
-    bootstrapURLKeys={{
-    key: 'AIzaSyACeZsYd8xiS1jF_VviZZGmNjY0gQX-Co4',
-    language: 'zh-cn',
-    }}
-
+    apiKey={'AIzaSyACeZsYd8xiS1jF_VviZZGmNjY0gQX-Co4'}
     style={style}
     options={options}
     hoverDistance={hoverDistance}
