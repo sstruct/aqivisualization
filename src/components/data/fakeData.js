@@ -4,11 +4,10 @@ import Data from './2016-05-10T09:00:00Z.json'
  *calculate avarage AQI
  *@para data:array
  */
-function calculateAverageAQI(data) {
+let calculateAverageAQI = (data) => {
   let length = data.length
   let i=0, sum = 0, avg = 0
   for(i; i<length; i++){
-    // sum += parseInt(Data[i].aqi, 10 )
     sum += parseInt(data[i].aqi, 10)
   }
   return avg = sum / length
@@ -19,7 +18,7 @@ function calculateAverageAQI(data) {
  *@para area:string
  *@para data:array
  */
-function getAreaData(area, data) {
+let getAreaData = (area, data) => {
   let length = data.length
   let areaData = []
   let i = 0
@@ -31,7 +30,7 @@ function getAreaData(area, data) {
   return areaData
 }
 
-let beijingData = getAreaData('北京', Data)
+let beijingData = getAreaData('杭州', Data)
 
 let all = calculateAverageAQI(beijingData)
 
