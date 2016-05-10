@@ -1,8 +1,9 @@
+import AQI from './2016-05-10T09:00:00Z.json'
 import Geojson from './Geojson.json'
 
 let geojson = JSON.parse(Geojson)
 
-const TOTAL_COUNT = 500;
+const TOTAL_COUNT = AQI[0].aqi;
 
 export const zhongyuanCoords = { lat: 36.2304, lng: 111.4737 };
 
