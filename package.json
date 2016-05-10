@@ -83,7 +83,7 @@
     "react": "^15.0.2",
     "react-dom": "^15.0.2",
     "react-motion": "^0.4.3",
-    "recompose": "^0.14.5",
+    "recompose": "^0.15.0",
     "redux": "^3.5.2"
   }
 }
