@@ -45,17 +45,3 @@ export const getAddress = (area, Data) => {
   }
   return areaData
 }
-
-/*
- *convert address to coords
- *@para area:string
- *@para Data:array
- */
-
-export const getCoords = (area, Data) => {
-  let addressData = getAddress(area, Data)
-  for(let i=0; i<addressData.length; i++) {
-
-  }
-  return areaData
-}
