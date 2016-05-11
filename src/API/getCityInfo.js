@@ -13,6 +13,7 @@ var data = (function(data) {
   return data
 })(initData)
 
+// 获取详细地址数据, 包括 coordinates 等
 var getAddressInfo = function(keywords) {
   var options = {
     uri: 'http://restapi.amap.com/v3/place/text',
@@ -28,21 +29,25 @@ var getAddressInfo = function(keywords) {
   // 根据关键词(address)获取详细地理位置信息
   var addressInfo = []
   rp(options)
-      .then(function (res) {
-        console.log(res.length);
-        // 将获取到的字符在解析成成JS对象, 并将第一个匹配地址存入cityInfo
-        addressInfo.push(JSON.parse(res).pois[0])
-      })
-      .catch(function (err) {
-          // API call failed...
-      });
-
-  setTimeout(function() {
-    return console.log(addressInfo)
-  }, 5000)
+    .then(function (res) {
+      console.log(res.length);
+      // 将获取到的字符在解析成成JS对象, 并将第一个匹配地址存入cityInfo
+      // addressInfo.push(JSON.parse(res).pois[0])
+      // fs.appendFile('addressInfo.json', JSON.stringify(addressInfo), 'utf8',
+      JSON.parse(res).pois[0]
+      fs.appendFile('addressInfo.json', JSON.stringify(JSON.parse(res).pois[0]) + ',', 'utf8',
+      function (err) {
+        if (err) return console.log(err);
+        console.log('addressjson written');
+     })
+    })
+    .catch(function (err) {
+        // API call failed...
+    });
 }
 
 var length = data.length
-for(var i=0; i<2; i++) {
-  getAddressInfo(data[i].address)
-}
+setTimeout(function(){
+  for(var i=0; i<3; i++) {
+  getAddressInfo(data[i].address)}
+},3000)
