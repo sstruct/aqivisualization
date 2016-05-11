@@ -17,8 +17,8 @@ export const gMap = ({
 }) => (
   <GoogleMapReact
     bootstrapURLKeys={{
-     key: 'AIzaSyACeZsYd8xiS1jF_VviZZGmNjY0gQX-Co4',
-     language: 'zh-cn'
+      key: 'AIzaSyCRxbJdhOt-7eegI23zh8Qxea-aPiNhq9Y',
+      language: 'zh-cn'
     }}
     style={style}
     options={options}

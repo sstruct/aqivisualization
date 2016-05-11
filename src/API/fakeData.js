@@ -1,14 +1,7 @@
 import Data from './data/2016-05-10T13:00:00Z.json'
-import { calculateAverageAQI, getAreaData, getCoords} from './DataAPI'
+// import { calculateAverageAQI, getAreaData, getCoords} from './DataAPI'
 
-let foo = getCoords('北京', Data)
-
-// main function
-let beijingData = getAreaData('北京', foo)
-
-let all = calculateAverageAQI(beijingData)
-
-const TOTAL_COUNT = parseInt(all)
+const TOTAL_COUNT = parseInt(200)
 
 export const zhongyuanCoords = { lat: 36.2304, lng: 111.4737 };
 
