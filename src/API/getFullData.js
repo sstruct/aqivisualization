@@ -1,24 +1,24 @@
-var rp = require('request-promise');
-var fs = require('fs')
+'use strict'
+let rp = require('request-promise');
+let fs = require('fs')
 
 const initData = require('./data/2016-05-10T21:00:00Z.json')
 
 // 将原数组 initData 中的 area 和 position_name 拼接为 address,
 // 并返回含有 address 的新数组 data
-var data = (function(data) {
-  var length = data.length
-  for(var i = 0; i < length; i++) {
+let data = (function(data) {
+  let length = data.length
+  for(let i = 0; i < length; i++) {
     data[i].address = data[i].area + '+' + data[i].position_name
   }
   return data
 })(initData)
 
-// 获取详细地址数据, 包括 coordinates 等
-var getAddressInfo = function(keywords) {
-  // 根据关键词(keywords)获取详细地理位置信息
-  for(var i=0; i<30; i++) {
+// 根据关键词(keywords)获取详细地理位置信息, 包括 coordinates 等
+let getAddressInfo = function(keywords) {
+  for(let i=0; i<2; i++) {
     keywords = data[i].address
-    var options = {
+    let options = {
       uri: 'http://restapi.amap.com/v3/place/text',
       qs: {
         key: '9af057131c164beb294688e7847d9e84',
@@ -27,17 +27,17 @@ var getAddressInfo = function(keywords) {
     }
     rp(options)
       .then(function (res) {
-        if(res.length !== 0) {
-          // 将获取到的字符在解析成成JS对象, 并将第一个匹配地址存入cityInfo
-          var addressInfo = data
-          addressInfo[i].addressDetail = JSON.parse(res).pois[0]
-          var item = JSON.stringify(addressInfo[i])+','
-          console.log(JSON.parse(res).pois[0])
-          fs.appendFile('newData.json',item ,'utf8',
+          if(res.length !== 0) {
+            // 将获取到的字符在解析成成JS对象, 并将第一个匹配地址存入cityInfo
+            let addressInfo = data
+            addressInfo[i].addressDetail = JSON.parse(res).pois[0]
+            let item = JSON.stringify(addressInfo[i])+','
+            console.log(JSON.parse(res).pois[0])
+            fs.appendFile('newData.json',item ,'utf8',
             function (err) {
               if (err) return console.log(err);
               // console.log('err written\n',JSON.parse(res).pois[0]);
-          })}
+            })}
       })
       .catch(function (err) {
           // API call failed...
