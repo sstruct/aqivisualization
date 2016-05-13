@@ -31,22 +31,26 @@ let getPM25cn = function () {
   }
   rp(options)
     .then(function(res) {
-      console.log(JSON.parse(res));
-      if(JSON.stringify(JSON.parse(res)).length < 10000) {
-        login()
+      // console.log(res)
+      let fileName = res[0].time_point + '.json'
+      if(fileName.length > 20) {
+        fs.writeFile(fileName, res ,'utf8',
+        function (err) {
+          console.log(fileName)
+          if (err) return console.log(err);
+          // console.log('err written\n',JSON.parse(res).pois[0]);
+        })
       } else {
-        let data = JSON.stringify(JSON.parse(res))
-        fs.writeFile('thisisthename.json', data ,'utf8',
-          function (err) {
-            if (err) return console.log(err);
-            // console.log('err written\n',JSON.parse(res).pois[0]);
-        })}
+        console.log('getPM25cn failed')
       }
-    )
+    })
     .catch(function (err) {
         // API call failed...
     })
 }
+
+// login()
+getPM25cn()
 
 module.exports = {
   getPM25cn: getPM25cn,
