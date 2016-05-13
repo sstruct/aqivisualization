@@ -23,6 +23,7 @@
   "keywords": [],
   "author": "Your name here",
   "devDependencies": {
+    "async-each": "^1.0.0",
     "autoprefixer": "^6.3.6",
     "babel-cli": "^6.8.0",
     "babel-core": "^6.8.0",
@@ -75,12 +76,14 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
+    "async": "^2.0.0-rc.4",
+    "bluebird": "^3.3.5",
     "core-js": "^2.3.0",
     "google-map-react": "^0.12.0",
     "immutable": "^3.8.1",
     "normalize.css": "^4.1.1",
     "points-cluster": "^0.1.4",
-    "react": "^15.0.2",
+    "react": "^0.14.8",
     "react-dom": "^15.0.2",
     "react-motion": "^0.4.3",
     "recompose": "^0.15.0",

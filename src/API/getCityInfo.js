@@ -15,39 +15,34 @@ var data = (function(data) {
 
 // 获取详细地址数据, 包括 coordinates 等
 var getAddressInfo = function(keywords) {
-  var options = {
-    uri: 'http://restapi.amap.com/v3/place/text',
-    qs: {
-      key: '9af057131c164beb294688e7847d9e84',
-      keywords: keywords
-    },
-    headers: {
-      'cache-control': 'no-cache',
+  // 根据关键词(keywords)获取详细地理位置信息
+  for(var i=0; i<2; i++) {
+    keywords = data[i].address
+    var options = {
+      uri: 'http://restapi.amap.com/v3/place/text',
+      qs: {
+        key: '9af057131c164beb294688e7847d9e84',
+        keywords: keywords
+      }
     }
+    rp(options)
+      .then(function (res) {
+        if(res.length !== 0) {
+          // 将获取到的字符在解析成成JS对象, 并将第一个匹配地址存入cityInfo
+          var addressInfo = data
+          addressInfo[i].addressDetail = JSON.parse(res).pois[0]
+          var item = JSON.stringify(addressInfo[i])+','
+          console.log(JSON.parse(res).pois[0])
+          fs.appendFile('newData.json',item ,'utf8',
+            function (err) {
+              if (err) return console.log(err);
+              // console.log('err written\n',JSON.parse(res).pois[0]);
+          })}
+      })
+      .catch(function (err) {
+          // API call failed...
+      });
   }
-
-  // 根据关键词(address)获取详细地理位置信息
-  var addressInfo = []
-  rp(options)
-    .then(function (res) {
-      console.log(res.length);
-      // 将获取到的字符在解析成成JS对象, 并将第一个匹配地址存入cityInfo
-      // addressInfo.push(JSON.parse(res).pois[0])
-      // fs.appendFile('addressInfo.json', JSON.stringify(addressInfo), 'utf8',
-      JSON.parse(res).pois[0]
-      fs.appendFile('addressInfo.json', JSON.stringify(JSON.parse(res).pois[0]) + ',', 'utf8',
-      function (err) {
-        if (err) return console.log(err);
-        console.log('addressjson written');
-     })
-    })
-    .catch(function (err) {
-        // API call failed...
-    });
 }
 
-var length = data.length
-setTimeout(function(){
-  for(var i=0; i<3; i++) {
-  getAddressInfo(data[i].address)}
-},3000)
+getAddressInfo()

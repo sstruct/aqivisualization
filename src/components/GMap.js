@@ -7,7 +7,7 @@ import mapPropsOnChange from 'recompose/mapPropsOnChange';
 import GoogleMapReact from 'google-map-react';
 import supercluster from 'points-cluster';
 import ClusterMarker from './markers/ClusterMarker';
-import { zhongyuanCoords, markersData } from '../API/fakeData';
+import { zhongyuanCoords, markersData } from '../API/Data';
 
 export const gMap = ({
   style, hoverDistance, options, Geojson,
