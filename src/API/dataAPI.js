@@ -1,4 +1,3 @@
-// import data
 // import Data from '../../API/2016-05-10T13:00:00Z.json'
 
 /*

@@ -1,7 +1,4 @@
-import Data from './newData.json'
 // import { calculateAverageAQI, getAreaData, getCoords} from './DataAPI'
-
-console.log(Data[0])
 
 const TOTAL_COUNT = parseInt(200)
 

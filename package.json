@@ -38,6 +38,7 @@
     "bower-webpack-plugin": "^0.1.9",
     "chai": "^3.5.0",
     "copyfiles": "^0.2.1",
+    "cron": "^1.1.0",
     "css-loader": "^0.23.1",
     "eslint": "^2.9.0",
     "eslint-config-airbnb": "^8.0.0",

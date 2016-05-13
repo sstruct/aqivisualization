@@ -1,6 +1,6 @@
 'use strict'
 let CronJob = require('cron').CronJob
-let getPM25cn = require('./getData/getPM25cn')
+let getPM25cn = require('./modules/getPM25cn')
 
 new CronJob('* 00 * * * *', function() {
   let data = new Date()
