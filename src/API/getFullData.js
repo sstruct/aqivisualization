@@ -16,7 +16,7 @@ var data = (function(data) {
 // 获取详细地址数据, 包括 coordinates 等
 var getAddressInfo = function(keywords) {
   // 根据关键词(keywords)获取详细地理位置信息
-  for(var i=0; i<2; i++) {
+  for(var i=0; i<30; i++) {
     keywords = data[i].address
     var options = {
       uri: 'http://restapi.amap.com/v3/place/text',
