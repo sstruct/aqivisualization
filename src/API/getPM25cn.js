@@ -1,25 +1,27 @@
-var rp = require('request-promise');
-var fs = require('fs')
+'use strict'
+let rp = require('request-promise');
+let fs = require('fs')
 
-var getPM25cn = function() {
-  function login() {
-    var options = {
-      uri: 'http://www.pm25.in/api/querys/all_cities.json?token=5j1znBVAsnSf5xQyNQyq',
-      qs: {
-        'method': 'GET'
-      }
+let login = function() {
+  let options = {
+    uri: 'http://www.pm25.in/api/querys/all_cities.json?token=5j1znBVAsnSf5xQyNQyq',
+    qs: {
+      'method': 'GET',
+      'cache-control': 'no-cache'
     }
-    rp(options)
-      .then(function(res) {
-        console.log(JSON.parse(res));
-        console.log('logined');
-      })
-      .catch(function (err) {
-          // API call failed...
-      })
   }
+  rp(options)
+    .then(function(res) {
+      console.log(JSON.parse(res));
+      console.log('logined');
+    })
+    .catch(function (err) {
+        // API call failed...
+    })
+}
 
-  var options = {
+let getPM25cn = function () {
+  let options = {
     uri: 'http://www.pm25.in/api/querys/all_cities.json',
     qs: {
       token: '5j1znBVAsnSf5xQyNQyq',
@@ -27,14 +29,13 @@ var getPM25cn = function() {
       'cache-control': 'no-cache'
     }
   }
-
   rp(options)
     .then(function(res) {
       console.log(JSON.parse(res));
       if(JSON.stringify(JSON.parse(res)).length < 10000) {
         login()
       } else {
-        var data = JSON.stringify(JSON.parse(res))
+        let data = JSON.stringify(JSON.parse(res))
         fs.writeFile('thisisthename.json', data ,'utf8',
           function (err) {
             if (err) return console.log(err);
@@ -47,4 +48,7 @@ var getPM25cn = function() {
     })
 }
 
-getPM25cn()
+module.exports = {
+  getPM25cn: getPM25cn,
+  login: login
+}
