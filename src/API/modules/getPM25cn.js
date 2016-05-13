@@ -1,6 +1,7 @@
 'use strict'
 let rp = require('request-promise');
 let fs = require('fs')
+// const testData = require('./data/2016-05-10T13:00:00Z.json')
 
 let login = function() {
   let options = {
@@ -33,6 +34,7 @@ let getPM25cn = function () {
     .then(function(res) {
       // console.log(res)
       let fileName = res[0].time_point + '.json'
+      // let fileName = testData[0].time_point + '.json'
       if(fileName.length > 20) {
         fs.writeFile(fileName, res ,'utf8',
         function (err) {
@@ -48,9 +50,6 @@ let getPM25cn = function () {
         // API call failed...
     })
 }
-
-// login()
-getPM25cn()
 
 module.exports = {
   getPM25cn: getPM25cn,
