@@ -27,6 +27,7 @@ var getPM25cn = function() {
       'cache-control': 'no-cache'
     }
   }
+
   rp(options)
     .then(function(res) {
       console.log(JSON.parse(res));
