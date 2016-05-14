@@ -7,9 +7,6 @@ let google = window.google
 // with on-click details for each hotel.
 
 let map, places;
-let autocomplete;
-let countryRestrict = {'country': 'cn'};
-
 let countries = {
   'us': {
     center: {lat: 37.1, lng: -95.7},
@@ -51,7 +48,7 @@ window.onload = function() {
   // Listen for the event fired when the user selects a prediction and retrieve
   // more details for that place.
   searchBox.addListener('places_changed', function() {
-    let places = searchBox.getPlaces();
+    places = searchBox.getPlaces();
     if (places.length == 0) {
       return;
     }
@@ -59,17 +56,10 @@ window.onload = function() {
     // Restrict the search to the default country, and to place type "cities".
     let place = places[0]
     if (place.geometry) {
-      search();
       map.panTo(place.geometry.location);
-      map.setZoom(10);
+      map.setZoom(13);
     } else {
-      document.getElementById('autocomplete').placeholder = 'Which City?';
+      document.getElementById('searchBox').placeholder = 'Which City?';
     }
   })
-}
-
-function search() {
-  let search = {
-    bounds: map.getBounds(),
-  };
 }
