@@ -36,14 +36,14 @@ nav li {
 }
 
 /*搜索框样式*/
-form.search {
+form.searchBox {
   position: absolute;
   width: 150px;
   top: 4px;
   right: 3vw;
 }
 
-.search input {
+.searchBox input {
   float: right;
   width: 90px;
   border-radius: 10px;
@@ -53,6 +53,6 @@ form.search {
   transition: 0.2s  width;
 }
 
-.search input:hover { width: 140px;}
-.search label {display: none;}
-form.search input { background-color: #fff; }
+.searchBox input:hover { width: 140px;}
+.searchBox label {display: none;}
+form.searchBox input { background-color: #fff; }
