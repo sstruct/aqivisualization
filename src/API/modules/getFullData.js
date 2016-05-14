@@ -2,7 +2,7 @@
 let rp = require('request-promise');
 let fs = require('fs')
 
-const initData = require('./data/2016-05-10T21:00:00Z.json')
+const initData = require('../data/2016-05-10T21:00:00Z.json')
 
 // 将原数组 initData 中的 area 和 position_name 拼接为 address,
 // 并返回含有 address 的新数组 data

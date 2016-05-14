@@ -1,2 +1,2 @@
-# AirQuality
-Describe AQI in a Visualizational Way.
+# AQIVisualization
+Display AQI in a Visualizational Way.

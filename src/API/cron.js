@@ -2,14 +2,14 @@
 let CronJob = require('cron').CronJob
 let getPM25cn = require('./modules/getPM25cn')
 
-new CronJob('* 00 * * * *', function() {
+new CronJob('00 22 * * * *', function() {
   let data = new Date()
   getPM25cn.login()
-  console.log('run at:', data.getSeconds(),'S',data.getMinutes(),'M')
+  console.log('login run at:', data.getSeconds(),'S',data.getMinutes(),'M', data.getHours(),'H')
 }, null, true, 'Asia/Shanghai')
 
-new CronJob('* 05 * * * *', function() {
+new CronJob('00 25 * * * *', function() {
   let data = new Date()
   getPM25cn.getPM25cn()
-  console.log('and run at:', data.getSeconds(),'S',data.getMinutes(),'M')
+  console.log('getPM25cn run at:', data.getSeconds(),'S',data.getMinutes(),'M', data.getHours(),'H')
 }, null, true, 'Asia/Shanghai')

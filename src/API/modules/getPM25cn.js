@@ -7,6 +7,8 @@ let login = function() {
   let options = {
     uri: 'http://www.pm25.in/api/querys/all_cities.json?token=5j1znBVAsnSf5xQyNQyq',
     qs: {
+      'postman-token': 'e3534778-5721-190e-9384-7660a2651006',
+      token: '5j1znBVAsnSf5xQyNQyq',
       'method': 'GET',
       'cache-control': 'no-cache'
     }
@@ -25,6 +27,7 @@ let getPM25cn = function () {
   let options = {
     uri: 'http://www.pm25.in/api/querys/all_cities.json',
     qs: {
+      'postman-token': 'e3534778-5721-190e-9384-7660a2651006',
       token: '5j1znBVAsnSf5xQyNQyq',
       'method': 'GET',
       'cache-control': 'no-cache'
@@ -32,7 +35,7 @@ let getPM25cn = function () {
   }
   rp(options)
     .then(function(res) {
-      // console.log(res)
+      console.log(res)
       let fileName = res[0].time_point + '.json'
       // let fileName = testData[0].time_point + '.json'
       if(fileName.length > 20) {
