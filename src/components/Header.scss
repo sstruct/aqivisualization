@@ -11,13 +11,13 @@ header {
     position: absolute;
     top: 50%;
     transform: translate(25%, -50%);
-    margin-left: 1em;
   }
 }
 
 /*导航栏样式*/
 nav.menu {
   position: absolute;
+  font-weight: bold;
   width: 100%;
 }
 nav {
@@ -36,7 +36,7 @@ nav {
 }
 
 /*搜索框样式*/
-form.searchBox {
+.searchBox {
   position: absolute;
   top: 50%;
   transform: translate(0, -50%);
@@ -55,4 +55,4 @@ form.searchBox {
 
 .searchBox input:hover { width: 14em; border-color: #4d90fe;}
 .searchBox label {display: none;}
-form.searchBox input { background-color: #fff; }
+.searchBox input { background-color: #fff; }
