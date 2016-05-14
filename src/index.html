@@ -3,10 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <title>earthquake</title>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRxbJdhOt-7eegI23zh8Qxea-aPiNhq9Y"></script>
+  <script type="text/javascript" src="./assets/app.js"></script>
 </head>
 <body>
-  <div id="app"></div>
+  <header>
+    <section id="title">
+        <a href="#"><h3>AQIVisualization</h3></a>
+    </section>
+    <nav class="menu">
+      <ul>
+        <li><a href="#">HOME</a></li>
+        <li><a href="#">CITY</a></li>
+        <li><a href="#">ABOUT</a></li>
+      </ul>
+    </nav>
+    <form action="#" class="search" method="post">
+      <label for="search">Search</label>
+      <input type="text" name="which_city" placeholder="Which city?">
+    </form>
+  </header>
+  <div id="main">
+    <div id='map' />
+  </div>
   <script>__REACT_DEVTOOLS_GLOBAL_HOOK__ = parent.__REACT_DEVTOOLS_GLOBAL_HOOK__</script>
-  <script type="text/javascript" src="./assets/app.js"></script>
 </body>
 </html>

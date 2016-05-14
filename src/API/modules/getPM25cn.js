@@ -8,15 +8,27 @@ let login = function() {
     uri: 'http://www.pm25.in/api/querys/all_cities.json?token=5j1znBVAsnSf5xQyNQyq',
     qs: {
       'postman-token': 'e3534778-5721-190e-9384-7660a2651006',
-      token: '5j1znBVAsnSf5xQyNQyq',
+      // token: '5j1znBVAsnSf5xQyNQyq',
       'method': 'GET',
       'cache-control': 'no-cache'
     }
   }
   rp(options)
     .then(function(res) {
-      console.log(JSON.parse(res));
-      console.log('logined');
+      console.log(res)
+      console.log('logined')
+      let fileName = res[0].time_point + '.json'
+      // let fileName = testData[0].time_point + '.json'
+      if(fileName.length > 20) {
+        fs.writeFile(fileName, res ,'utf8',
+        function (err) {
+          console.log(fileName)
+          if (err) return console.log(err);
+          // console.log('err written\n',JSON.parse(res).pois[0]);
+        })
+      } else {
+        console.log('getPM25cn failed')
+      }
     })
     .catch(function (err) {
         // API call failed...
