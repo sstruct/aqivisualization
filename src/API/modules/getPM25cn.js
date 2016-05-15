@@ -1,31 +1,25 @@
 'use strict'
 let rp = require('request-promise');
 let fs = require('fs')
-// const testData = require('./data/2016-05-10T13:00:00Z.json')
+// let testData = require('../data/2016-05-10T13:00:00Z.json')
 
 let login = function() {
-  let options = {
+  let loginOptions = {
     uri: 'http://www.pm25.in/api/querys/all_cities.json?token=5j1znBVAsnSf5xQyNQyq',
     qs: {
-      'postman-token': 'e3534778-5721-190e-9384-7660a2651006',
-      // token: '5j1znBVAsnSf5xQyNQyq',
+      token: '5j1znBVAsnSf5xQyNQyq',
       'method': 'GET',
-      'cache-control': 'no-cache'
+      'cache-control': 'no-cache',
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.87 Safari/537.36'
     }
   }
-  rp(options)
+  rp(loginOptions)
     .then(function(res) {
-      console.log(res)
-      console.log('logined')
+      console.log('login res ', res);
       let fileName = res[0].time_point + '.json'
-      // let fileName = testData[0].time_point + '.json'
-      if(fileName.length > 20) {
-        fs.writeFile(fileName, res ,'utf8',
-        function (err) {
-          console.log(fileName)
-          if (err) return console.log(err);
-          // console.log('err written\n',JSON.parse(res).pois[0]);
-        })
+      console.log('logined fileName: ', fileName)
+      if(fileName !== 'undefined.json') {
+        fs.writeFile(fileName, res ,'utf8')
       } else {
         console.log('getPM25cn failed')
       }
@@ -36,26 +30,38 @@ let login = function() {
 }
 
 let getPM25cn = function () {
-  let options = {
+  let getJSONoptions = {
     uri: 'http://www.pm25.in/api/querys/all_cities.json',
     qs: {
-      'postman-token': 'e3534778-5721-190e-9384-7660a2651006',
       token: '5j1znBVAsnSf5xQyNQyq',
       'method': 'GET',
-      'cache-control': 'no-cache'
+      'cache-control': 'no-cache',
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.87 Safari/537.36'
     }
   }
-  rp(options)
+  rp(getJSONoptions)
     .then(function(res) {
-      console.log(res)
-      let fileName = res[0].time_point + '.json'
-      // let fileName = testData[0].time_point + '.json'
-      if(fileName.length > 20) {
+      console.log('getPM25cn res: ',res);
+      let date = new Date()
+      let optionName = date.getSeconds()+'S'+date.getMinutes()+'M'+date.getHours()+'H'+date.getDate()+'D.json'
+      let timeNameFromRes = res[0].time_point + '.json'
+      let fileName = timeNameFromRes == 'undefined.json'?optionName:timeNameFromRes
+      console.log('getPM25cn fileName: ', fileName)
+      let err = JSON.parse(res).error
+      console.log('getPM25cn err: ', err);
+      if(err) {
+        if(err == `You need to sign in or sign up before continuing.`) {
+          login()
+          console.log('not login')
+        } else {
+          if(err == `Sorry，您这个小时内的API请求次数用完了，休息一下吧！`)
+          console.log('Take a rest')
+        }
+      }
+      if(fileName !== 'undefined.json') {
         fs.writeFile(fileName, res ,'utf8',
-        function (err) {
-          console.log(fileName)
-          if (err) return console.log(err);
-          // console.log('err written\n',JSON.parse(res).pois[0]);
+        function () {
+          console.log('yaeh~');
         })
       } else {
         console.log('getPM25cn failed')
@@ -65,6 +71,8 @@ let getPM25cn = function () {
         // API call failed...
     })
 }
+
+// getPM25cn()
 
 module.exports = {
   getPM25cn: getPM25cn,
