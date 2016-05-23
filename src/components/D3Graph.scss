@@ -1,0 +1,12 @@
+header, #map {
+  display: none;
+}
+
+section.graph {
+  display: flex;
+  align-items: center;
+  vertical-align: center;
+  border: 1px solid;
+  width: 300px;
+  height: 100px;
+}
