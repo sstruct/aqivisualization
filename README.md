@@ -5,4 +5,5 @@ Display AQI in a Visualizational Way.
 Search box may need proxy.
 
 # Thanks
-aqicn.org
+- aqicn.org
+- Google Maps
