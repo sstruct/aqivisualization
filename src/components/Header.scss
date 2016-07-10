@@ -1,0 +1,57 @@
+/*header样式*/
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2.4em;
+  z-index: 20;
+  overflow: hidden;
+  background-color: rgba(220,220,220,.6);
+  #title {
+    position: absolute;
+    top: 50%;
+    transform: translate(25%, -50%);
+  }
+}
+
+/*导航栏样式*/
+nav.menu {
+  position: absolute;
+  top: 50%;
+  transform: translate(25%, -50%);
+  font-weight: bold;
+  width: 100%;
+}
+nav {
+  ul {
+    width: 100%;
+  }
+  li {
+    display: inline;
+    margin-left: 2em;
+    list-style-type: none;
+    text-decoration: none;
+  }
+}
+
+/*搜索框样式*/
+.searchBox {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  right: 1em;
+}
+
+.searchBox input {
+  width: 10em;
+  border-radius: 1em;
+  border-color: #ddd;
+  color: #999;
+  outline: none;
+  padding-left: 1em;
+  transition: 0.2s  width;
+}
+
+.searchBox input:hover { width: 14em; border-color: #4d90fe;}
+.searchBox label {display: none;}
